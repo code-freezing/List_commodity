@@ -24,7 +24,7 @@ export interface Goods {
   keywords: string[]; // 关键词，用于搜索匹配
   price: number; // 价格（用于排序/筛选）
   ratingCount: number; // 评价数（用于热度排序）
-  image: Resource; // 缩略图资源
+  image: Resource | string; // 缩略图资源或远程 URL
   imageHeight: number; // 图片高度（模拟高矮图瀑布流）
   advertisingText?: string; // 广告文案（展示）
   category: CategoryRef; // 分类映射

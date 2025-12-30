@@ -27,7 +27,9 @@ class ListIndex extends ViewPU {
     initialRender() {
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Row.create();
+            Row.width(LAYOUT_WIDTH_OR_HEIGHT);
             Row.height(LAYOUT_WIDTH_OR_HEIGHT);
+            Row.layoutWeight(1);
             Row.alignItems(VerticalAlign.Top);
             Row.justifyContent(FlexAlign.Start);
             Row.backgroundColor({ "id": 16777240, "type": 10001, params: [], "bundleName": "com.example.list_harmony", "moduleName": "entry" });
@@ -37,6 +39,8 @@ class ListIndex extends ViewPU {
         }, Row);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Navigation.create(new NavPathStack(), { moduleName: "entry", pagePath: "entry/src/main/ets/pages/ListIndex", isUserCreateStack: false });
+            Navigation.height(LAYOUT_WIDTH_OR_HEIGHT);
+            Navigation.layoutWeight(1);
             Navigation.size({ width: LAYOUT_WIDTH_OR_HEIGHT, height: LAYOUT_WIDTH_OR_HEIGHT });
             Navigation.title(STORE);
             Navigation.titleMode(NavigationTitleMode.Mini);
@@ -44,6 +48,7 @@ class ListIndex extends ViewPU {
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Column.create();
             Column.width(LAYOUT_WIDTH_OR_HEIGHT);
+            Column.height(LAYOUT_WIDTH_OR_HEIGHT);
             Column.justifyContent(FlexAlign.Start);
             Column.alignItems(HorizontalAlign.Start);
         }, Column);

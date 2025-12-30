@@ -1450,18 +1450,16 @@
       "error": false
     },
     "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\TabBarsComponent.ets": {
-      "mtimeMs": 1766324259366.8518,
+      "mtimeMs": 1767102615850.6965,
       "children": [
         "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\viewmodel\\InitialData.ets",
         "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\common\\CommonConstants.ets",
-        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\GoodsListComponent.ets",
-        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\PutDownRefreshLayout.ets",
-        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\WaterfallGoodsComponent.ets",
-        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\WaterfallGoodsCategory.ets",
         "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\SearchAndFilterBar.ets",
         "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\viewmodel\\AdvancedListDataSource.ets",
         "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\viewmodel\\GoodsRepository.ets",
-        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\models\\Category.ets"
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\models\\Category.ets",
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\WaterfallList.ets",
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\RefreshLayout.ets"
       ],
       "parent": [
         "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\pages\\ListIndex.ets"
@@ -1480,12 +1478,18 @@
         "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\WaterfallGoodsComponent.ets",
         "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\SearchAndFilterBar.ets",
         "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\viewmodel\\AdvancedListDataSource.ets",
-        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\WaterfallGoodsCategory.ets"
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\WaterfallGoodsCategory.ets",
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\SelectedComponent.ets",
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\Banner.ets",
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\WaterfallListHome.ets",
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\WaterfallListCategory.ets",
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\WaterfallList.ets",
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\RefreshLayout.ets"
       ],
       "error": false
     },
     "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\pages\\ListIndex.ets": {
-      "mtimeMs": 1766324001001.337,
+      "mtimeMs": 1767093905353.5698,
       "children": [
         "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\TabBarsComponent.ets",
         "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\common\\CommonConstants.ets"
@@ -1504,7 +1508,7 @@
       "error": false
     },
     "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\GoodsListComponent.ets": {
-      "mtimeMs": 1766316566524.0427,
+      "mtimeMs": 1767096012949.3833,
       "children": [
         "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\common\\CommonConstants.ets",
         "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\viewmodel\\InitialData.ets",
@@ -1516,12 +1520,13 @@
       "error": false
     },
     "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\PutDownRefreshLayout.ets": {
-      "mtimeMs": 1766316566534.5625,
+      "mtimeMs": 1767101319076.7197,
       "children": [
         "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\common\\CommonConstants.ets"
       ],
       "parent": [
-        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\TabBarsComponent.ets"
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\TabBarsComponent.ets",
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\RefreshLayout.ets"
       ],
       "error": false
     },
@@ -1533,12 +1538,13 @@
         "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\common\\CommonConstants.ets"
       ],
       "parent": [
-        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\TabBarsComponent.ets"
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\TabBarsComponent.ets",
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\WaterfallListHome.ets"
       ],
       "error": false
     },
     "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\SearchAndFilterBar.ets": {
-      "mtimeMs": 1766324947350.4705,
+      "mtimeMs": 1767101319839.4822,
       "children": [
         "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\viewmodel\\AdvancedListDataSource.ets",
         "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\models\\Goods.ets",
@@ -1550,7 +1556,7 @@
       "error": false
     },
     "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\viewmodel\\AdvancedListDataSource.ets": {
-      "mtimeMs": 1766318511169.3972,
+      "mtimeMs": 1767102315351.0183,
       "children": [
         "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\models\\Goods.ets",
         "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\viewmodel\\GoodsRepository.ets",
@@ -1560,12 +1566,13 @@
         "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\TabBarsComponent.ets",
         "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\WaterfallGoodsComponent.ets",
         "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\SearchAndFilterBar.ets",
-        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\WaterfallGoodsCategory.ets"
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\WaterfallGoodsCategory.ets",
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\WaterfallList.ets"
       ],
       "error": false
     },
     "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\viewmodel\\GoodsRepository.ets": {
-      "mtimeMs": 1766319926686.1582,
+      "mtimeMs": 1767091567509.394,
       "children": [
         "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\models\\Category.ets",
         "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\models\\Goods.ets"
@@ -1588,14 +1595,15 @@
       "error": false
     },
     "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\models\\Goods.ets": {
-      "mtimeMs": 1766318173682.8813,
+      "mtimeMs": 1767084240929.6938,
       "children": [],
       "parent": [
         "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\WaterfallGoodsComponent.ets",
         "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\viewmodel\\AdvancedListDataSource.ets",
         "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\viewmodel\\GoodsRepository.ets",
         "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\SearchAndFilterBar.ets",
-        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\WaterfallGoodsCategory.ets"
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\WaterfallGoodsCategory.ets",
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\WaterfallList.ets"
       ],
       "error": false
     },
@@ -2058,6 +2066,72 @@
     },
     "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\WaterfallGoodsCategory.ets": {
       "mtimeMs": 1766325361772.381,
+      "children": [
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\models\\Goods.ets",
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\viewmodel\\AdvancedListDataSource.ets",
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\common\\CommonConstants.ets"
+      ],
+      "parent": [
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\TabBarsComponent.ets",
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\WaterfallListCategory.ets"
+      ],
+      "error": false
+    },
+    "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\SelectedComponent.ets": {
+      "mtimeMs": 1767095208510.2688,
+      "children": [
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\common\\CommonConstants.ets"
+      ],
+      "parent": [
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\TabBarsComponent.ets"
+      ],
+      "error": false
+    },
+    "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\Banner.ets": {
+      "mtimeMs": 1767095208510.2688,
+      "children": [
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\common\\CommonConstants.ets"
+      ],
+      "parent": [
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\TabBarsComponent.ets"
+      ],
+      "error": false
+    },
+    "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\WaterfallListHome.ets": {
+      "mtimeMs": 1767095208510.2688,
+      "children": [
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\WaterfallGoodsComponent.ets",
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\common\\CommonConstants.ets"
+      ],
+      "parent": [
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\TabBarsComponent.ets"
+      ],
+      "error": false
+    },
+    "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\WaterfallListCategory.ets": {
+      "mtimeMs": 1767095208510.2688,
+      "children": [
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\WaterfallGoodsCategory.ets",
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\common\\CommonConstants.ets"
+      ],
+      "parent": [
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\TabBarsComponent.ets"
+      ],
+      "error": false
+    },
+    "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\RefreshLayout.ets": {
+      "mtimeMs": 1767101321158.4543,
+      "children": [
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\PutDownRefreshLayout.ets",
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\common\\CommonConstants.ets"
+      ],
+      "parent": [
+        "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\TabBarsComponent.ets"
+      ],
+      "error": false
+    },
+    "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\view\\WaterfallList.ets": {
+      "mtimeMs": 1767096568239.055,
       "children": [
         "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\models\\Goods.ets",
         "C:\\Users\\31026\\DevEcoStudioProjects\\List_commodity\\List_commodity\\entry\\src\\main\\ets\\viewmodel\\AdvancedListDataSource.ets",

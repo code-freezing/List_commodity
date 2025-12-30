@@ -66,53 +66,79 @@ export function getAllGoods(): Goods[] {
 
   // 手机类
   list.push(makeGoods(id++, '旗舰安卓手机', ['安卓', '旗舰', '5G'], 3999, 1289,
-    $r('app.media.goodsImg'), 180, '性能强劲，影像旗舰', 'mobile', 'android', ['热卖'], 1001));
+    $r('app.media.goods_new4'), 180, '性能强劲，影像旗舰', 'mobile', 'android', ['热卖'], 1001));
   list.push(makeGoods(id++, '苹果手机', ['苹果', 'iOS', '新品'], 5999, 5234,
-    $r('app.media.goodsImg_2'), 260, '生态顺滑，体验极佳', 'mobile', 'ios', ['新品'], 1005));
+    $r('app.media.goods_new1'), 260, '生态顺滑，体验极佳', 'mobile', 'ios', ['新品'], 1005));
   list.push(makeGoods(id++, '快充套装', ['充电器', '数据线', '配件'], 199, 532,
-    $r('app.media.goodsImg_3'), 140, '高效快充，安全稳定', 'mobile', 'accessory', ['配件'], 998));
+    $r('app.media.goods_new2'), 140, '高效快充，安全稳定', 'mobile', 'accessory', ['配件'], 998));
   list.push(makeGoods(id++, '折叠屏手机', ['折叠', '旗舰', '5G'], 6999, 823,
-    $r('app.media.goodsImg_3'), 240, '大屏沉浸，便携折叠', 'mobile', 'android', ['旗舰'], 1007));
+    $r('app.media.goods_new3'), 240, '大屏沉浸，便携折叠', 'mobile', 'android', ['旗舰'], 1007));
   list.push(makeGoods(id++, '长续航大电池', ['安卓', '续航', '大电池'], 2599, 612,
-    $r('app.media.goodsImg_4'), 200, '重度使用也安心', 'mobile', 'android', ['续航'], 999));
+    $r('app.media.goods_new20'), 200, '重度使用也安心', 'mobile', 'android', ['续航'], 999));
   list.push(makeGoods(id++, '蓝牙降噪耳机', ['耳机', '配件', '降噪'], 499, 934,
-    $r('app.media.goodsImg'), 180, '通勤好音质，长续航', 'mobile', 'accessory', ['配件'], 996));
+    $r('app.media.goods_new22'), 180, '通勤好音质，长续航', 'mobile', 'accessory', ['配件'], 996));
 
   // 服饰类
   list.push(makeGoods(id++, '男士休闲T恤', ['男装', 'T恤', '纯棉'], 129, 221,
-    $r('app.media.goodsImg_4'), 220, '亲肤透气，日常必备', 'clothes', 'men', ['春季'], 980));
+    $r('app.media.goods_new11'), 220, '亲肤透气，日常必备', 'clothes', 'men', ['春季'], 980));
   list.push(makeGoods(id++, '女士连衣裙', ['女装', '连衣裙', '夏季'], 299, 457,
-    $r('app.media.goodsImg'), 300, '轻盈飘逸，夏日清新', 'clothes', 'women', ['夏季'], 1002));
+    $r('app.media.goods_new12'), 300, '轻盈飘逸，夏日清新', 'clothes', 'women', ['夏季'], 1002));
   list.push(makeGoods(id++, '儿童运动套装', ['童装', '运动', '舒适'], 199, 112,
-    $r('app.media.goodsImg_2'), 160, '活力满满，成长相伴', 'clothes', 'kids', ['童趣'], 970));
+    $r('app.media.goods_new26'), 160, '活力满满，成长相伴', 'clothes', 'kids', ['童趣'], 970));
   list.push(makeGoods(id++, '轻薄羽绒服', ['羽绒服', '保暖', '轻便'], 499, 380,
-    $r('app.media.goodsImg_3'), 260, '轻暖平衡，通勤必备', 'clothes', 'men', ['秋冬'], 994));
+    $r('app.media.goods_new33'), 260, '轻暖平衡，通勤必备', 'clothes', 'men', ['秋冬'], 994));
   list.push(makeGoods(id++, '运动跑鞋', ['跑鞋', '缓震', '透气'], 399, 742,
-    $r('app.media.goodsImg_2'), 220, '轻盈缓震，畅快开跑', 'clothes', 'men', ['运动'], 993));
+    $r('app.media.goods_new16'), 220, '轻盈缓震，畅快开跑', 'clothes', 'men', ['运动'], 993));
   list.push(makeGoods(id++, '夏季防晒外套', ['防晒', '外套', '轻薄'], 189, 318,
-    $r('app.media.goodsImg_4'), 210, 'UPF防晒，清爽出行', 'clothes', 'women', ['夏季'], 991));
+    $r('app.media.goods_new31'), 210, 'UPF防晒，清爽出行', 'clothes', 'women', ['夏季'], 991));
 
   // 穿戴类
   list.push(makeGoods(id++, '智能手表', ['手表', '健康', 'NFC'], 1099, 845,
-    $r('app.media.goodsImg_3'), 240, '腕上智能，健康守护', 'wear', 'watch', ['热卖'], 995));
+    $r('app.media.goods_new5'), 240, '腕上智能，健康守护', 'wear', 'watch', ['热卖'], 995));
   list.push(makeGoods(id++, '运动手环', ['手环', '运动', '续航'], 229, 392,
-    $r('app.media.goodsImg_4'), 180, '轻便舒适，持久续航', 'wear', 'band', ['性价比'], 990));
+    $r('app.media.goods_new14'), 180, '轻便舒适，持久续航', 'wear', 'band', ['性价比'], 990));
   list.push(makeGoods(id++, '儿童定位手表', ['儿童', '定位', '手表'], 499, 188,
-    $r('app.media.goodsImg'), 200, '安全守护，语音通话', 'wear', 'watch', ['童趣'], 986));
+    $r('app.media.goods_new8'), 200, '安全守护，语音通话', 'wear', 'watch', ['童趣'], 986));
   list.push(makeGoods(id++, '潮流智能眼镜', ['眼镜', '智能', '穿戴'], 1299, 76,
-    $r('app.media.goodsImg_2'), 180, '时尚设计，智慧体验', 'wear', 'watch', ['新品'], 984));
+    $r('app.media.goods_new23'), 180, '时尚设计，智慧体验', 'wear', 'watch', ['新品'], 984));
 
   // 家居类
   list.push(makeGoods(id++, '厨房刀具套装', ['厨房', '刀具', '不锈钢'], 299, 184,
-    $r('app.media.goodsImg'), 200, '锋利耐用，烹饪好帮手', 'home', 'kitchen', ['实用'], 965));
+    $r('app.media.goods_new24'), 200, '锋利耐用，烹饪好帮手', 'home', 'kitchen', ['实用'], 965));
   list.push(makeGoods(id++, '全棉床品四件套', ['卧室', '床品', '纯棉'], 369, 263,
-    $r('app.media.goodsImg_2'), 280, '柔软舒适，安心睡眠', 'home', 'bedroom', ['舒适'], 975));
+    $r('app.media.goods_new15'), 280, '柔软舒适，安心睡眠', 'home', 'bedroom', ['舒适'], 975));
   list.push(makeGoods(id++, '北欧落地灯', ['灯具', '卧室', '氛围'], 269, 145,
-    $r('app.media.goodsImg_3'), 240, '柔和光线，温馨氛围', 'home', 'bedroom', ['家居'], 982));
+    $r('app.media.goods_new9'), 240, '柔和光线，温馨氛围', 'home', 'bedroom', ['家居'], 982));
   list.push(makeGoods(id++, '多功能料理机', ['厨房', '料理机', '家电'], 699, 321,
-    $r('app.media.goodsImg_4'), 220, '一机多用，轻松备餐', 'home', 'kitchen', ['实用'], 981));
+    $r('app.media.goods_new19'), 220, '一机多用，轻松备餐', 'home', 'kitchen', ['实用'], 981));
   list.push(makeGoods(id++, '收纳抽屉柜', ['收纳', '整理', '家居'], 159, 204,
-    $r('app.media.goodsImg'), 200, '省空间，大容量', 'home', 'bedroom', ['整理'], 979));
+    $r('app.media.goods_new18'), 200, '省空间，大容量', 'home', 'bedroom', ['整理'], 979));
+
+  // 追加一些示例商品，丰富瀑布流数量
+  list.push(makeGoods(id++, '轻薄长续航平板', ['平板', '影音', '学习'], 2199, 312,
+    $r('app.media.goods_new7'), 210, '学习娱乐两相宜', 'mobile', 'android', ['学习'], 978));
+  list.push(makeGoods(id++, '电竞游戏手机', ['游戏', '高刷', '散热'], 4599, 654,
+    $r('app.media.goods_new17'), 250, '高帧流畅，制胜加成', 'mobile', 'android', ['旗舰'], 977));
+  list.push(makeGoods(id++, '入门性价比手机', ['入门', '性价比', '5G'], 1299, 882,
+    $r('app.media.goods_new29'), 190, '日常流畅，信号稳定', 'mobile', 'android', ['性价比'], 976));
+  list.push(makeGoods(id++, '商务真皮单肩包', ['男包', '通勤', '大容量'], 469, 205,
+    $r('app.media.goods_new32'), 230, '质感皮面，收纳有序', 'clothes', 'men', ['通勤'], 974));
+  list.push(makeGoods(id++, '高腰牛仔裤', ['女装', '牛仔', '显瘦'], 239, 341,
+    $r('app.media.goods_new6'), 220, '直筒版型，遮肉显高', 'clothes', 'women', ['秋季'], 973));
+  list.push(makeGoods(id++, '连帽运动卫衣', ['卫衣', '运动', '休闲'], 199, 428,
+    $r('app.media.goods_new10'), 240, '柔软抓绒，百搭舒适', 'clothes', 'men', ['运动'], 972));
+  list.push(makeGoods(id++, '情侣家居拖鞋', ['拖鞋', '家居', '舒适'], 59, 188,
+    $r('app.media.goods_new27'), 160, '轻盈柔软，防滑静音', 'home', 'bedroom', ['居家'], 971));
+  list.push(makeGoods(id++, '智能恒温加湿器', ['加湿', '卧室', '静音'], 329, 276,
+    $r('app.media.goods_new25'), 200, '恒湿滋润，低噪守护', 'home', 'bedroom', ['家居'], 968));
+  list.push(makeGoods(id++, '空气炸锅', ['厨房', '少油', '家电'], 499, 538,
+    $r('app.media.goods_new14'), 210, '少油烹饪，酥脆可口', 'home', 'kitchen', ['健康'], 967));
+  list.push(makeGoods(id++, '复古机械键盘', ['键盘', '机械', '办公'], 399, 314,
+    $r('app.media.goods_new13'), 200, '手感干脆，复古配色', 'mobile', 'accessory', ['办公'], 966));
+  list.push(makeGoods(id++, '智能手环 Pro', ['手环', '健康', '续航'], 329, 512,
+    $r('app.media.goods_new28'), 180, '全天候健康监测，超长续航', 'wear', 'band', ['热卖'], 964));
+  list.push(makeGoods(id++, '户外运动手表', ['手表', 'GPS', '防水'], 1599, 221,
+    $r('app.media.goods_new21'), 240, '精准定位，多运动模式', 'wear', 'watch', ['户外'], 963));
 
   return list;
 }

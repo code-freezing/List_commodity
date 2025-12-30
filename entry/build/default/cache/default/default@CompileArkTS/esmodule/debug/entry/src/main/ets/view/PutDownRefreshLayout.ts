@@ -11,13 +11,14 @@ export default class PutDownRefresh extends ViewPU {
         if (typeof paramsLambda === "function") {
             this.paramsGenerator_ = paramsLambda;
         }
-        this.__refreshText = new SynchedPropertyObjectTwoWayPU(params.refreshText, this, "refreshText");
+        this.__refreshText = new SynchedPropertyObjectOneWayPU(params.refreshText, this, "refreshText");
         this.setInitiallyProvidedValue(params);
         this.finalizeConstruction();
     }
     setInitiallyProvidedValue(params: PutDownRefresh_Params) {
     }
     updateStateVars(params: PutDownRefresh_Params) {
+        this.__refreshText.reset(params.refreshText);
     }
     purgeVariableDependenciesOnElmtId(rmElmtId) {
         this.__refreshText.purgeDependencyOnElmtId(rmElmtId);

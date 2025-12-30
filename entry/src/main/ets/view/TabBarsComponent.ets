@@ -24,31 +24,156 @@ import {
   GOODS_EVALUATE_FONT_SIZE,
   MAX_LINES_TEXT
 } from '../common/CommonConstants';
-import GoodsList from './GoodsListComponent';
-import PutDownRefresh from './PutDownRefreshLayout';
-import WaterfallGoods from './WaterfallGoodsComponent';
-import CategoryGoodsWaterfall from './WaterfallGoodsCategory';
 import SearchAndFilterBar from './SearchAndFilterBar';
 import AdvancedListDataSource from '../viewmodel/AdvancedListDataSource';
 import { categories } from '../viewmodel/GoodsRepository';
 import { Subcategory } from '../models/Category';
+import WaterfallList from './WaterfallList';
+import RefreshLayout, { RefreshHandler } from './RefreshLayout';
 
 @Component
 export default struct TabBar {
-  private currentOffsetY: number = 0;
-  private timer: number = 0;
   @State tabsIndex: number = 0;
   @State refreshStatus: boolean = false;
   @State refreshText: Resource = $r('app.string.refresh_text');
+  @State homeScrollKey: number = 0;
+  @State categoryScrollKey: number = 0;
+  private homeScroller: Scroller = new Scroller();
+  private categoryScroller: Scroller = new Scroller();
   // 高级数据源通过 @Provide 共享给子组件（@Consume 接收）
   // 独立的精选数据源与分类数据源，互不影响
   @Provide homeDS: AdvancedListDataSource = new AdvancedListDataSource();
   @Provide categoryDS: AdvancedListDataSource = new AdvancedListDataSource();
   // 当前选中的子类（每个类目对应一组子类）
-  @State selectedSubcategoryId: string = '';
+  @State selectedSubcategoryId: string = 'all';
   // 触摸位移（用于上拉加载更多）
   private startTouchOffsetY: number = 0;
   private endTouchOffsetY: number = 0;
+
+  // 下拉刷新回调（精选）
+  private async onHomeRefresh(): Promise<void> {
+    this.refreshStatus = true;
+    await new Promise<void>((resolve) => setTimeout(resolve, REFRESH_TIME));
+    this.refreshStatus = false;
+  }
+
+  // 下拉刷新回调（分类）
+  private async onCategoryRefresh(): Promise<void> {
+    this.refreshStatus = true;
+    await new Promise<void>((resolve) => setTimeout(resolve, REFRESH_TIME));
+    this.refreshStatus = false;
+  }
+
+  private handleHomeTouch(event?: TouchEvent): void {
+    if (event === undefined) { return; }
+    switch (event.type) {
+      case TouchType.Down:
+        this.startTouchOffsetY = event.touches[0].y;
+        break;
+      case TouchType.Move:
+        this.endTouchOffsetY = event.touches[0].y;
+        if (this.startTouchOffsetY - this.endTouchOffsetY > 0) {
+          this.homeDS.loadMore();
+        }
+        break;
+      default:
+        break;
+    }
+  }
+
+  private handleCategoryTouch(event?: TouchEvent): void {
+    if (event === undefined) { return; }
+    switch (event.type) {
+      case TouchType.Down:
+        this.startTouchOffsetY = event.touches[0].y;
+        break;
+      case TouchType.Move:
+        this.endTouchOffsetY = event.touches[0].y;
+        if (this.startTouchOffsetY - this.endTouchOffsetY > 0) {
+          this.categoryDS.loadMore();
+        }
+        break;
+      default:
+        break;
+    }
+  }
+
+  @Builder
+  homeContent() {
+    Scroll(this.homeScroller) {
+      Column() {
+        SearchAndFilterBar()
+        WaterfallList({ mode: 'home' })
+        Text($r('app.string.to_bottom'))
+          .fontSize(NORMAL_FONT_SIZE)
+          .fontColor($r('app.color.gray'))
+          .width('100%')
+          .textAlign(TextAlign.Center)
+      }
+      .width(LAYOUT_WIDTH_OR_HEIGHT)
+      .padding({ top: 0 })
+      .constraintSize({ minHeight: LAYOUT_WIDTH_OR_HEIGHT })
+      .justifyContent(FlexAlign.Start)
+      .alignItems(HorizontalAlign.Start)
+    }
+    .scrollBar(BarState.Off)
+    .edgeEffect(EdgeEffect.Spring)
+    .width(LAYOUT_WIDTH_OR_HEIGHT)
+    .height(LAYOUT_WIDTH_OR_HEIGHT)
+    .layoutWeight(1)
+    .id(`home-${this.homeScrollKey}`)
+    .onTouch((event?: TouchEvent) => this.handleHomeTouch(event))
+  }
+
+  @Builder
+  categoryContent(index: number) {
+    Scroll(this.categoryScroller) {
+      Column() {
+        Row() {
+          Button((this.selectedSubcategoryId === 'all') ? '✓ 全部' : '全部')
+            .type((this.selectedSubcategoryId === 'all') ? ButtonType.Capsule : ButtonType.Normal)
+            .onClick(() => {
+              this.selectedSubcategoryId = 'all';
+              const catId: string = (categories[index] !== undefined) ? (categories[index].id) : '';
+              this.categoryDS.setCategory(catId, undefined);
+            })
+            .margin({ right: 8, bottom: 8 })
+
+          ForEach((categories[index] !== undefined) ? (categories[index].children ?? []) : [], (sub: Subcategory) => {
+            Button((this.selectedSubcategoryId === sub.id) ? `✓ ${sub.name}` : sub.name)
+              .type((this.selectedSubcategoryId === sub.id) ? ButtonType.Capsule : ButtonType.Normal)
+              .onClick(() => {
+                this.selectedSubcategoryId = sub.id;
+                const catId: string = (categories[index] !== undefined) ? (categories[index].id) : '';
+                this.categoryDS.setCategory(catId, sub.id);
+              })
+              .margin({ right: 8, bottom: 8 })
+          })
+        }
+        .width(LAYOUT_WIDTH_OR_HEIGHT)
+        .padding({ left: 12, right: 12, top: 0 })
+
+        WaterfallList({ mode: 'category' })
+        Text($r('app.string.to_bottom'))
+          .fontSize(NORMAL_FONT_SIZE)
+          .fontColor($r('app.color.gray'))
+          .width('100%')
+          .textAlign(TextAlign.Center)
+      }
+      .width(LAYOUT_WIDTH_OR_HEIGHT)
+      .padding({ top: 0 })
+      .constraintSize({ minHeight: LAYOUT_WIDTH_OR_HEIGHT })
+      .justifyContent(FlexAlign.Start)
+      .alignItems(HorizontalAlign.Start)
+    }
+    .scrollBar(BarState.Off)
+    .edgeEffect(EdgeEffect.Spring)
+    .width(LAYOUT_WIDTH_OR_HEIGHT)
+    .height(LAYOUT_WIDTH_OR_HEIGHT)
+    .layoutWeight(1)
+    .id(`category-${this.categoryScrollKey}`)
+    .onTouch((event?: TouchEvent) => this.handleCategoryTouch(event))
+  }
 
   @Builder
   firstTabBar() {
@@ -66,6 +191,32 @@ export default struct TabBar {
   }
 
   @Builder
+  private homeTab(): void {
+    RefreshLayout({
+      triggerOffset: MAX_OFFSET_Y,
+      onRefresh: this.homeRefreshHandler(),
+      content: (): void => this.homeContent()
+    })
+  }
+
+  @Builder
+  private categoryTab(index: number): void {
+    RefreshLayout({
+      triggerOffset: MAX_OFFSET_Y,
+      onRefresh: this.categoryRefreshHandler(),
+      content: (): void => this.categoryContent(index)
+    })
+  }
+
+  private homeRefreshHandler(): RefreshHandler {
+    return { run: (): Promise<void> | void => this.onHomeRefresh() };
+  }
+
+  private categoryRefreshHandler(): RefreshHandler {
+    return { run: (): Promise<void> | void => this.onCategoryRefresh() };
+  }
+
+  @Builder
   otherTabBar(content: Resource, index: number) {
     Column() {
       Text(content)
@@ -80,157 +231,17 @@ export default struct TabBar {
     .justifyContent(FlexAlign.Center)
   }
 
-  putDownRefresh(event?: TouchEvent): void {
-    if (event === undefined) {
-      return;
-    }
-    switch (event.type) {
-      // Record the y-coordinate pressed by the finger.
-      case TouchType.Down:
-        this.currentOffsetY = event.touches[0].y;
-        break;
-      case TouchType.Move:
-      // Determine whether to refresh based on the drop-down offset.
-        this.refreshStatus = event.touches[0].y - this.currentOffsetY > MAX_OFFSET_Y;
-        break;
-      case TouchType.Cancel:
-        break;
-      case TouchType.Up:
-      // Only simulation effect, no data request.
-        this.timer = setTimeout(() => {
-          this.refreshStatus = false;
-        }, REFRESH_TIME);
-        break;
-      default:
-        break;
-    }
-  }
-
-  aboutToDisappear() {
-    clearTimeout(this.timer);
-  }
-
   build() {
     Tabs() {
       TabContent() {
-        // 首个 Tab：展示首页瀑布流 + 搜索筛选
-        Scroll() {
-          Column() {
-            if (this.refreshStatus) {
-              PutDownRefresh({ refreshText: $refreshText })
-            }
-            // 搜索与筛选栏（关键词、排序与多重过滤）
-            SearchAndFilterBar()
-            // 瀑布流商品浏览（高矮图共存）
-            WaterfallGoods()
-            // 底部“已到底了”提示
-            Text($r('app.string.to_bottom'))
-              .fontSize(NORMAL_FONT_SIZE)
-              .fontColor($r('app.color.gray'))
-              .width('100%')
-              .textAlign(TextAlign.Center)
-          }
-          .width(LAYOUT_WIDTH_OR_HEIGHT)
-          .padding({ top: 0 })
-          .justifyContent(FlexAlign.Start)
-          .alignItems(HorizontalAlign.Start)
-        }
-        .scrollBar(BarState.Off)
-        .edgeEffect(EdgeEffect.Spring)
-        .width(LAYOUT_WIDTH_OR_HEIGHT)
-        // 让内容自然从顶部开始，而不是强占满高导致视觉上下居中
-        // .height(LAYOUT_WIDTH_OR_HEIGHT)
-        .onTouch((event?: TouchEvent) => {
-          // 下拉刷新 + 上拉加载更多
-          this.putDownRefresh(event);
-          if (event === undefined) { return; }
-          switch (event.type) {
-            case TouchType.Down:
-              this.startTouchOffsetY = event.touches[0].y;
-              break;
-            case TouchType.Move:
-              this.endTouchOffsetY = event.touches[0].y;
-              // 上拉方向（向上滚动）
-              if (this.startTouchOffsetY - this.endTouchOffsetY > 0) {
-                this.homeDS.loadMore();
-              }
-              break;
-            case TouchType.Up:
-            case TouchType.Cancel:
-            default:
-              break;
-          }
-        })
+        this.homeTab();
       }
       .tabBar(this.firstTabBar)
 
       // 其它分类 Tab：三步内找到目标品类（点 Tab → 看子类 → 浏览商品）
       ForEach(initTabBarData, (item: Resource, index?: number) => {
         TabContent() {
-          // 分类页使用 Scroll，支持下拉刷新与上拉加载更多
-          Scroll() {
-            Column() {
-              // 子类列表（第二步：看子类）
-              Row() {
-                ForEach((index !== undefined && categories[index] !== undefined) ? (categories[index].children ?? []) : [], (sub: Subcategory) => {
-                  Button((this.selectedSubcategoryId === sub.id) ? `✓ ${sub.name}` : sub.name)
-                    .type((this.selectedSubcategoryId === sub.id) ? ButtonType.Capsule : ButtonType.Normal)
-                    .onClick(() => {
-                      // 设置分类与子类条件（第三步：进列表/瀑布流浏览）
-                      this.selectedSubcategoryId = sub.id;
-                      const catId: string = (index !== undefined && categories[index] !== undefined) ? (categories[index].id) : '';
-                      this.categoryDS.setCategory(catId, sub.id);
-                    })
-                    .margin({ right: 8, bottom: 8 })
-                })
-              }
-              .width(LAYOUT_WIDTH_OR_HEIGHT)
-              .padding({ left: 12, right: 12, top: 0 })
-
-              // 下拉刷新提示
-              if (this.refreshStatus) {
-                PutDownRefresh({ refreshText: $refreshText })
-              }
-              // 商品浏览区域：复用瀑布流组件显示筛选结果（分类专用）
-              CategoryGoodsWaterfall()
-              // 底部“已到底了”提示
-              Text($r('app.string.to_bottom'))
-                .fontSize(NORMAL_FONT_SIZE)
-                .fontColor($r('app.color.gray'))
-                .width('100%')
-                .textAlign(TextAlign.Center)
-            }
-            .width(LAYOUT_WIDTH_OR_HEIGHT)
-            .padding({ top: 0 })
-            .justifyContent(FlexAlign.Start)
-            .alignItems(HorizontalAlign.Start)
-          }
-          .scrollBar(BarState.Off)
-          .edgeEffect(EdgeEffect.Spring)
-          .width(LAYOUT_WIDTH_OR_HEIGHT)
-          // 让内容自然从顶部开始，而不是强占满高导致视觉上下居中
-          // .height(LAYOUT_WIDTH_OR_HEIGHT)
-          .onTouch((event?: TouchEvent) => {
-            // 下拉刷新 + 上拉加载更多
-            this.putDownRefresh(event);
-            if (event === undefined) { return; }
-            switch (event.type) {
-              case TouchType.Down:
-                this.startTouchOffsetY = event.touches[0].y;
-                break;
-              case TouchType.Move:
-                this.endTouchOffsetY = event.touches[0].y;
-                if (this.startTouchOffsetY - this.endTouchOffsetY > 0) {
-                  this.categoryDS.loadMore();
-                }
-                break;
-              case TouchType.Up:
-              case TouchType.Cancel:
-              default:
-                break;
-            }
-          })
-          // Scroll 不支持 justifyContent，这里移除并保持尺寸设置在前文
+          this.categoryTab(index !== undefined ? index : 0);
         }
         .tabBar(this.otherTabBar(item, index !== undefined ? index : 0))
       })
@@ -240,16 +251,23 @@ export default struct TabBar {
       this.tabsIndex = index;
       // 当切换到分类 Tab 时，默认按该类目过滤；首个 Tab 恢复全部
       if (index === 0) {
-        this.selectedSubcategoryId = '';
+        this.selectedSubcategoryId = 'all';
         this.homeDS.reset();
+        this.homeScrollKey++;
+        this.homeScroller.scrollTo({ xOffset: 0, yOffset: 0 });
       } else {
         const catIdx: number = index - 1; // categories 与 initTabBarData 顺序一致
         if (catIdx >= 0 && catIdx < categories.length) {
-          this.selectedSubcategoryId = '';
-            this.categoryDS.setCategory(categories[catIdx].id, undefined);
+          this.selectedSubcategoryId = 'all';
+          this.categoryDS.setCategory(categories[catIdx].id, undefined);
+          this.categoryScrollKey++;
+          this.categoryScroller.scrollTo({ xOffset: 0, yOffset: 0 });
         }
       }
     })
     .vertical(false)
+    // Tabs 拉满可视区域，避免内容不足时的默认居中
+    .width(LAYOUT_WIDTH_OR_HEIGHT)
+    .height(LAYOUT_WIDTH_OR_HEIGHT)
   }
 }

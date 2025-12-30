@@ -62,22 +62,24 @@ export default class AdvancedListDataSource {
   // 上拉加载更多（示例：追加一页当前结果，直到达到最大长度）
   loadMore() {
     const currentLength: number = this.filteredGoods.length;
-    if (currentLength >= MAX_DATA_LENGTH) {
+    const fullList: Goods[] = this.filterAll();
+    if (currentLength >= fullList.length || currentLength >= MAX_DATA_LENGTH) {
       return;
     }
-    const base: Goods[] = currentLength > 0 ? this.filteredGoods : this.allGoods;
     const remain: number = MAX_DATA_LENGTH - currentLength;
-    // 取一段追加
-    const append: Goods[] = [];
-    const limit: number = (base.length < remain) ? base.length : remain;
-    for (let i: number = 0; i < limit; i++) {
-      append.push(base[i]);
-    }
+    const available: number = fullList.length - currentLength;
+    const limit: number = (available < remain) ? available : remain;
+    const append: Goods[] = fullList.slice(currentLength, currentLength + limit);
     this.filteredGoods = this.filteredGoods.concat(append);
   }
 
   // 应用筛选与排序
   private applyFilters() {
+    this.filteredGoods = this.filterAll();
+  }
+
+  // 基于当前条件生成完整结果（不分页）
+  private filterAll(): Goods[] {
     const f = this.filter;
     let result = this.allGoods.slice();
 
@@ -119,7 +121,6 @@ export default class AdvancedListDataSource {
       default:
         break;
     }
-
-    this.filteredGoods = result;
+    return result;
   }
 }

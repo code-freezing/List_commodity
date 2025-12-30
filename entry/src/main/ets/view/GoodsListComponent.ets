@@ -19,6 +19,7 @@ import { ListDataSource } from '../viewmodel/ListDataSource';
 
 @Component
 export default struct GoodsList {
+  // 早期的列表实现，使用 List + LazyForEach 懒加载商品卡片
   @Provide goodsListData: ListDataSource = new ListDataSource();
   private startTouchOffsetY: number = 0;
   private endTouchOffsetY: number = 0;

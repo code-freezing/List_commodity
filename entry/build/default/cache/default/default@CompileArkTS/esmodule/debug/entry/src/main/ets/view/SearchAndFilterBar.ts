@@ -101,13 +101,13 @@ export default class SearchAndFilterBar extends ViewPU {
             Row.margin({ bottom: 8 });
         }, Row);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
-            // ArkTS 当前不支持 TextInput 的 placeholder 属性，移除以保证编译
-            TextInput.create();
-            // ArkTS 当前不支持 TextInput 的 placeholder 属性，移除以保证编译
+            // 绑定 text 到 keyword，重置时输入框也清空
+            TextInput.create({ text: this.keyword });
+            // 绑定 text 到 keyword，重置时输入框也清空
             TextInput.width('75%');
-            // ArkTS 当前不支持 TextInput 的 placeholder 属性，移除以保证编译
+            // 绑定 text 到 keyword，重置时输入框也清空
             TextInput.height(40);
-            // ArkTS 当前不支持 TextInput 的 placeholder 属性，移除以保证编译
+            // 绑定 text 到 keyword，重置时输入框也清空
             TextInput.onChange((value: string) => { this.keyword = value; });
         }, TextInput);
         this.observeComponentCreation2((elmtId, isInitialRender) => {

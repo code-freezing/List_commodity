@@ -17,7 +17,7 @@ import * as commonConst from '../common/CommonConstants';
 
 @Component
 export default struct PutDownRefresh {
-  @Link refreshText: Resource;
+  @Prop refreshText: Resource;
 
   build() {
     Row() {

@@ -28,8 +28,8 @@ export default struct SearchAndFilterBar {
     Column() {
       // 搜索框
       Row() {
-        // ArkTS 当前不支持 TextInput 的 placeholder 属性，移除以保证编译
-        TextInput()
+        // 绑定 text 到 keyword，重置时输入框也清空
+        TextInput({ text: this.keyword })
           .width('75%')
           .height(40)
           .onChange((value: string) => { this.keyword = value; })

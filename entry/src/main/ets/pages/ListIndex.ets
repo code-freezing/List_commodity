@@ -26,14 +26,22 @@ struct ListIndex {
           TabBar()
         }
         .width(LAYOUT_WIDTH_OR_HEIGHT)
+        // 让内容区撑满可视高度，避免内部 Tab 内容被垂直居中
+        .height(LAYOUT_WIDTH_OR_HEIGHT)
         .justifyContent(FlexAlign.Start)
         .alignItems(HorizontalAlign.Start)
       }
+      // Navigation 也拉满，避免内容区域因父容器余量被居中
+      .height(LAYOUT_WIDTH_OR_HEIGHT)
+      .layoutWeight(1)
       .size({ width: LAYOUT_WIDTH_OR_HEIGHT, height: LAYOUT_WIDTH_OR_HEIGHT })
       .title(STORE)
       .titleMode(NavigationTitleMode.Mini)
     }
+    .width(LAYOUT_WIDTH_OR_HEIGHT)
     .height(LAYOUT_WIDTH_OR_HEIGHT)
+    // 占满父容器可用空间，防止内部导航/Tab 内容垂直居中
+    .layoutWeight(1)
     .alignItems(VerticalAlign.Top)
     .justifyContent(FlexAlign.Start)
     .backgroundColor($r('app.color.primaryBgColor'))

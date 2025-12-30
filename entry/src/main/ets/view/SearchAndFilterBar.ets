@@ -1,6 +1,8 @@
 /*
- * 搜索与筛选栏：支持关键词搜索、排序与多重过滤条件（价格区间、标签）
- * 中文注释，ArkTS 代码规范
+ * 搜索与筛选栏组件：
+ * - 支持关键词搜索、价格区间、排序等多重过滤
+ * - 绑定 homeDS 数据源，所有筛选操作均驱动数据源刷新
+ * - 结构清晰，便于扩展更多筛选项
  */
 
 import AdvancedListDataSource from '../viewmodel/AdvancedListDataSource';
@@ -12,13 +14,14 @@ export default struct SearchAndFilterBar {
   // 精选页的独立数据源，避免影响其它分类页
   @Consume homeDS: AdvancedListDataSource;
 
-  // 本地输入状态（需提供默认值）
+  // 本地输入状态（关键词、价格区间）
   @State keyword: string = '';
   @State minPrice: number | undefined = undefined;
   @State maxPrice: number | undefined = undefined;
 
   // 移除标签过滤，仅保留关键词与价格相关筛选
 
+  // 应用所有筛选条件，驱动数据源刷新
   private applyAll() {
     this.homeDS.setKeyword(this.keyword);
     this.homeDS.setPriceRange(this.minPrice, this.maxPrice);
@@ -26,9 +29,8 @@ export default struct SearchAndFilterBar {
 
   build() {
     Column() {
-      // 搜索框
+      // 搜索框区域：输入关键词，点击搜索按钮触发过滤
       Row() {
-        // 绑定 text 到 keyword，重置时输入框也清空
         TextInput({ text: this.keyword })
           .width('75%')
           .height(40)
@@ -42,7 +44,7 @@ export default struct SearchAndFilterBar {
       .width(commonConst.GOODS_LIST_WIDTH)
       .margin({ bottom: 8 })
 
-      // 排序按钮
+      // 排序按钮区域
       Row() {
         Button('价格↑').onClick(() => this.homeDS.setSort(SortBy.PriceAsc))
         Button('价格↓').onClick(() => this.homeDS.setSort(SortBy.PriceDesc)).margin({ left: 8 })
@@ -50,7 +52,7 @@ export default struct SearchAndFilterBar {
       .width(commonConst.GOODS_LIST_WIDTH)
       .margin({ bottom: 8 })
 
-      // 价格区间 + 应用按钮
+      // 价格区间输入与应用/重置按钮区域
       Row() {
         Text('价格区间:').fontSize(commonConst.GOODS_EVALUATE_FONT_SIZE)
         TextInput({ text: this.minPrice === undefined ? '' : String(this.minPrice) })

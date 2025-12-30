@@ -31,17 +31,22 @@ import { Subcategory } from '../models/Category';
 import WaterfallList from './WaterfallList';
 import RefreshLayout, { RefreshHandler } from './RefreshLayout';
 
+// TabBarsComponent 负责页面顶部 Tab 导航、子类筛选、商品列表渲染、下拉刷新等核心交互逻辑
 @Component
 export default struct TabBar {
+  // Tab 当前索引
   @State tabsIndex: number = 0;
+  // 刷新状态与提示文案
   @State refreshStatus: boolean = false;
   @State refreshText: Resource = $r('app.string.refresh_text');
+  // 滚动 key 用于强制刷新 Scroll 组件
   @State homeScrollKey: number = 0;
   @State categoryScrollKey: number = 0;
+  // Scroller 控制精选/分类列表的滚动
   private homeScroller: Scroller = new Scroller();
   private categoryScroller: Scroller = new Scroller();
   // 高级数据源通过 @Provide 共享给子组件（@Consume 接收）
-  // 独立的精选数据源与分类数据源，互不影响
+  // homeDS：精选商品数据源，categoryDS：分类商品数据源，互不影响
   @Provide homeDS: AdvancedListDataSource = new AdvancedListDataSource();
   @Provide categoryDS: AdvancedListDataSource = new AdvancedListDataSource();
   // 当前选中的子类（每个类目对应一组子类）
@@ -51,6 +56,7 @@ export default struct TabBar {
   private endTouchOffsetY: number = 0;
 
   // 下拉刷新回调（精选）
+  // 模拟异步刷新，实际可接入接口
   private async onHomeRefresh(): Promise<void> {
     this.refreshStatus = true;
     await new Promise<void>((resolve) => setTimeout(resolve, REFRESH_TIME));
@@ -58,12 +64,14 @@ export default struct TabBar {
   }
 
   // 下拉刷新回调（分类）
+  // 模拟异步刷新，实际可接入接口
   private async onCategoryRefresh(): Promise<void> {
     this.refreshStatus = true;
     await new Promise<void>((resolve) => setTimeout(resolve, REFRESH_TIME));
     this.refreshStatus = false;
   }
 
+  // 精选 Tab 上拉触发懒加载
   private handleHomeTouch(event?: TouchEvent): void {
     if (event === undefined) { return; }
     switch (event.type) {
@@ -81,6 +89,7 @@ export default struct TabBar {
     }
   }
 
+  // 分类 Tab 上拉触发懒加载
   private handleCategoryTouch(event?: TouchEvent): void {
     if (event === undefined) { return; }
     switch (event.type) {
@@ -98,6 +107,7 @@ export default struct TabBar {
     }
   }
 
+  // 精选 Tab 内容区域，含搜索栏、商品瀑布流、到底提示
   @Builder
   homeContent() {
     Scroll(this.homeScroller) {
@@ -125,6 +135,7 @@ export default struct TabBar {
     .onTouch((event?: TouchEvent) => this.handleHomeTouch(event))
   }
 
+  // 分类 Tab 内容区域，含子类按钮、商品瀑布流、到底提示
   @Builder
   categoryContent(index: number) {
     Scroll(this.categoryScroller) {
@@ -175,6 +186,7 @@ export default struct TabBar {
     .onTouch((event?: TouchEvent) => this.handleCategoryTouch(event))
   }
 
+  // 精选 Tab 的 TabBar 样式
   @Builder
   firstTabBar() {
     Column() {
@@ -190,6 +202,7 @@ export default struct TabBar {
     .justifyContent(FlexAlign.Center)
   }
 
+  // 精选 Tab 外层刷新容器
   @Builder
   private homeTab(): void {
     RefreshLayout({
@@ -199,6 +212,7 @@ export default struct TabBar {
     })
   }
 
+  // 分类 Tab 外层刷新容器
   @Builder
   private categoryTab(index: number): void {
     RefreshLayout({
@@ -208,14 +222,17 @@ export default struct TabBar {
     })
   }
 
+  // 精选 Tab 刷新回调适配器
   private homeRefreshHandler(): RefreshHandler {
     return { run: (): Promise<void> | void => this.onHomeRefresh() };
   }
 
+  // 分类 Tab 刷新回调适配器
   private categoryRefreshHandler(): RefreshHandler {
     return { run: (): Promise<void> | void => this.onCategoryRefresh() };
   }
 
+  // 分类 Tab 的 TabBar 样式
   @Builder
   otherTabBar(content: Resource, index: number) {
     Column() {
@@ -231,8 +248,10 @@ export default struct TabBar {
     .justifyContent(FlexAlign.Center)
   }
 
+  // 构建页面主结构：顶部 Tabs，TabContent 区分精选与各分类，切换时重置筛选与滚动
   build() {
     Tabs() {
+      // 精选 Tab
       TabContent() {
         this.homeTab();
       }
@@ -249,7 +268,7 @@ export default struct TabBar {
     .onChange((index: number) => {
       // 记录当前 Tab 索引
       this.tabsIndex = index;
-      // 当切换到分类 Tab 时，默认按该类目过滤；首个 Tab 恢复全部
+      // 切换 Tab 时重置筛选与滚动，首个 Tab 恢复全部，分类 Tab 按类目过滤
       if (index === 0) {
         this.selectedSubcategoryId = 'all';
         this.homeDS.reset();

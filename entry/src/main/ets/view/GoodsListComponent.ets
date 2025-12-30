@@ -1,16 +1,8 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
- * Licensed under the Apache License,Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * 商品列表组件（早期实现）：
+ * - 使用 List + LazyForEach 实现懒加载商品卡片
+ * - 结构为左右两列，包含图片、名称、广告语、评价、价格等
+ * - 支持上拉触发懒加载（通过 onTouch 监听）
  */
 
 import * as commonConst from '../common/CommonConstants';
@@ -19,17 +11,19 @@ import { ListDataSource } from '../viewmodel/ListDataSource';
 
 @Component
 export default struct GoodsList {
-  // 早期的列表实现，使用 List + LazyForEach 懒加载商品卡片
+  // 商品数据源，支持懒加载
   @Provide goodsListData: ListDataSource = new ListDataSource();
   private startTouchOffsetY: number = 0;
   private endTouchOffsetY: number = 0;
 
   build() {
     Row() {
+      // 商品列表区域，List + LazyForEach 懒加载
       List({ space: commonConst.LIST_ITEM_SPACE }) {
         LazyForEach(this.goodsListData, (item: GoodsListItemType) => {
           ListItem() {
             Row() {
+              // 商品图片
               Column() {
                 Image(item?.goodsImg)
                   .width(commonConst.LAYOUT_WIDTH_OR_HEIGHT)
@@ -39,6 +33,7 @@ export default struct GoodsList {
               .width(commonConst.GOODS_IMAGE_WIDTH)
               .height(commonConst.LAYOUT_WIDTH_OR_HEIGHT)
 
+              // 商品信息区：名称、广告语、评价、价格
               Column() {
                 Text(item?.goodsName)
                   .fontSize(commonConst.NORMAL_FONT_SIZE)
@@ -67,6 +62,7 @@ export default struct GoodsList {
             .height(commonConst.GOODS_LIST_HEIGHT)
             .width(commonConst.LAYOUT_WIDTH_OR_HEIGHT)
           }
+          // 监听触摸事件，支持上拉懒加载
           .onTouch((event?: TouchEvent) => {
             if (event === undefined) {
               return;

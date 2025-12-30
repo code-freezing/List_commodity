@@ -1,17 +1,18 @@
 import PutDownRefresh from './PutDownRefreshLayout';
 import { MAX_OFFSET_Y, REFRESH_TIME } from '../common/CommonConstants';
 
+// 刷新回调接口，run可异步
 export interface RefreshHandler {
   run: () => Promise<void> | void;
 }
 
 @Component
 export default struct RefreshLayout {
-  // 触发距离
+  // 触发距离，超过则触发刷新
   @Prop triggerOffset: number = MAX_OFFSET_Y;
   // 刷新回调（可异步）
   @Prop onRefresh: RefreshHandler = { run: () => {} };
-  // 内容插槽
+  // 内容插槽，渲染主内容
   @BuilderParam content: () => void = this.defaultContent;
 
   @State private pulling: boolean = false; // 超过触发距离时显示提示
@@ -27,6 +28,7 @@ export default struct RefreshLayout {
     this.content();
   }
 
+  // 执行刷新逻辑，带超时兜底，防止刷新卡死
   private async doRefresh() {
     if (this.refreshing) {
       return;
@@ -47,6 +49,7 @@ export default struct RefreshLayout {
     }
   }
 
+  // 处理下拉手势，判断是否触发刷新
   private handleTouch(event?: TouchEvent) {
     if (event === undefined) {
       return;
